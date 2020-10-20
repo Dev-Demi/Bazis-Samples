@@ -1,4 +1,4 @@
-const filename = 'С:\\f.fr3d'; // адрес до фрагмента
+п»їconst filename = 'C:\\f.fr3d'; // Р°РґСЂРµСЃ РґРѕ С„СЂР°РіРјРµРЅС‚Р°
 var furn = OpenFurniture(filename);
 var obj = furn.Make(0, 0);
 obj.Owner = Model.Temp;
