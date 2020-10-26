@@ -1,4 +1,4 @@
-﻿Prop = Action.Properties;
+﻿
 kolp = 0;
 var arr = [];
 
@@ -15,15 +15,22 @@ SetCamera(p3dLeft);
 Back = GetEdge('Укажите заднюю границу', AxisY).First.z;
 Front = GetEdge('Укажите переднюю границу', AxisY).First.z;
 
-KrMat = NewButtMaterialInput("Кромка");
-BtnStop = NewButtonInput("Закончить");
-BtnStop.OnChange = function() {
-  SetCamera(p3dIsometric);
-  Action.Finish()
- }
-kp = Prop.NewNumber('Кол-во полок', kolp);
+SetCamera(p3dIsometric);
 
+Prop = Action.Properties;
+kp = Prop.NewNumber('Кол-во полок', kolp);
 gr = Prop.NewGroup('Интервалы');
+
+KrMat = Prop.NewButt("Кромка");
+KrMat.OnChange = function() {
+  MakePolki();
+ }
+
+BtnStop = Prop.NewButton("Закончить");
+BtnStop.OnClick = function() {
+   SetCamera(p3dIsometric);
+   Action.Finish();
+  }
 
 SchemeL = Action.Properties.NewFurnitureValue();
 SchemeL.DatumModeFilter = DatumMode.Scheme;
@@ -47,7 +54,6 @@ function MakeInterface() {
      }
      arr[i] = interv;
     }
-  Action.Continue();
 }
 
 function MakePolki () {
@@ -89,20 +95,19 @@ function MakePolki () {
 
 
   Polka = AddHorizPanel(Left, Front, Right, Back, y);
-  Polka.AddButt(KrMat, i);
-  SchemeL.MountScheme(LeftPanel, Polka, FurniturePosition.Outside);
-  SchemeR.MountScheme(RightPanel, Polka, FurniturePosition.Outside);
+  Polka.AddButt(KrMat, 0);
+  SchemeL.MountScheme(LeftPanel, Polka, FurniturePosition.Up);
+  SchemeR.MountScheme(RightPanel, Polka, FurniturePosition.Up);
  }
- Action.Continue();
 }
 
 
 kp.OnChange = function() {
  kolp = kp.Value;
  MakeInterface();
-
+ return true;
 }
 
-  Action.Continue();
+Action.Continue();
 
 
