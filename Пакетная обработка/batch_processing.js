@@ -10,7 +10,7 @@ for (var i in files){
     if (ext=='.b3d')
     {
         var name = dir + files[i];
-        Model.Load(name);
+        Action.LoadModel(name);
        // 
        // Здесь делаем что хотим с моделью
        //
