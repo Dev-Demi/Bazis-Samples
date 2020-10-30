@@ -75,10 +75,10 @@ function MakePolki () {
  for (var i = 0; i <= kolp; i++) {
      interv = arr[i];
      if (interv.Value != 0) {
-       interv.Name = 'Interval !0 '+interv.Value;
+       interv.Name = 'Interval !0 '+interv.Value.toFixed(2);
       }
       else  {
-        interv.Name = 'Interval 0 '+autoh;
+        interv.Name = 'Interval 0 '+autoh.toFixed(2);
       }
      }
 
