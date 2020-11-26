@@ -1,6 +1,7 @@
-﻿const filename = 'C:\\f.fr3d'; // адрес до фрагмента
+﻿const filename = 'f:\\0.fr3d'; // адрес до фрагмента
 var furn = OpenFurniture(filename);
 var obj = furn.Make(0, 0);
+obj.Build();
 obj.Owner = Model.Temp;
 if (obj && obj.List)
 {
