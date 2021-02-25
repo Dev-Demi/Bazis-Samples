@@ -1,27 +1,35 @@
 ﻿//////////////////////////////////////
 //                                  //
-//  version 1.0                     //
+//  version 1.1                     //
 //  autor   Viktor                  //
-//  mail    viktor-flash@mail.ru    //
-//  vk.com/jobbm для Связи          //
+//  mail    3d-b@mail.ru            //
+//  связь   vk.com/3dbru            //
 //                                  //
 //////////////////////////////////////
 
+Undo.RecursiveChanging(Model);
+
 if (!Model.Selected){
-    Model.forEach(function(panel) {
-        panel.Visible = true;
+    Model.forEach(function(obj) {
+        var Ramka = obj instanceof TModelLimits;
+        var Layer = obj instanceof TLayer3D;
+
+        if (!Ramka && !Layer){
+            obj.Visible = true;
+        }
     });
 } else {
-    Model.forEach(function(panel) {
-        var myProp = panel.UserProperty["Видимость"];
+    Model.forEach(function(obj) {
+        var myProp = obj.UserProperty["Видимость"];
+        var Layer = obj instanceof TLayer3D;
 
-        if ((panel.Selected) && (!myProp)){
-            panel.UserProperty["Видимость"] = "Нет";
-            panel.Visible = false;        
+        if (obj.Selected && !myProp && !Layer){
+            obj.UserProperty["Видимость"] = "Нет";
+            obj.Visible = false;        
         }
 
-        if ((panel.Selected) && (myProp=="Нет")){
-            panel.UserProperty["Видимость"] =  undefined;
+        if (obj.Selected && myProp=="Нет" && !Layer){
+            obj.UserProperty["Видимость"] =  undefined;
         }
     });
 }
