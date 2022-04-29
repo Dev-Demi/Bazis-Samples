@@ -31,7 +31,8 @@ function DestroyBlock(block) {
         if (obj.Selected)
           Line.push(obj)
       }
-
- for (var i = 0; i < Line.length ; i++){
+  );
+  
+  for (var i = 0; i < Line.length ; i++){
     DestroyBlock(Line[i])
-  });
+  }
